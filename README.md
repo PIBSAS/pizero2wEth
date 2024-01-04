@@ -16,6 +16,10 @@ RNDIS &amp; ECM for Raspberry Pi Zero 2W with case USB Gadget. Gracias a Ben's P
 ## Easy Install -- Instalación fácil para Raspberry Pi:
 
 ````
+sudo rpi-update
+````
+
+````
 curl -sSL https://raw.githubusercontent.com/PIBSAS/pizero2wEth/main/pi02WEth.sh | bash
 ````
 
