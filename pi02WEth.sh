@@ -1,9 +1,11 @@
 #!/bin/bash
 cd
 echo "Update Kernel"
+echo
 echo "yes" | sudo rpi-update
 echo
 echo "Move to /boot to make changes"
+echo
 cd /boot
 sudo sed -i 's/dtoverlay=dwc2//g' config.txt
 sudo sed -i '$a\dtoverlay=dwc2' config.txt
@@ -13,6 +15,7 @@ sudo sed -i 's/$/ modules-load=dwc2/' cmdline.txt
 echo
 cd
 echo "Move to /etc to make changes"
+echo
 cd /etc
 sudo sed -i 's/libcomposite//g' modules
 sudo sed -i '$a\libcomposite' modules
@@ -20,6 +23,7 @@ echo
 cd
 echo
 echo "Clean file made before so the new is the correct"
+echo
 sudo rm /usr/local/sbin/usb-gadget.sh
 #sudo wget -c "https://raw.githubusercontent.com/PIBSAS/pizero2wEth/main/usb-gadget.sh" -P "/usr/local/sbin/"
 echo '#!/bin/bash
@@ -82,11 +86,13 @@ nmcli connection up bridge-slave-usb1
 sleep 5
 service dnsmasq restart' | sudo tee /usr/local/sbin/usb-gadget.sh > /dev/null
 echo
-echo "MMake executable"
+echo "Make executable"
+echo
 sudo chmod +x /usr/local/sbin/usb-gadget.sh
 echo
 cd
 echo "Clean file made before so the new is the correct"
+echo
 sudo rm /lib/systemd/system/usbgadget.service
 echo "[Unit]
 Description=My USB gadget
@@ -105,17 +111,20 @@ echo
 #sudo wget -c "https://github.com/PIBSAS/pizero2wEth/blob/main/usbgadget.service" -P "/lib/systemd/system/"
 echo
 echo "Enable USB Gadget Service"
+echo
 sudo systemctl enable usbgadget.service
 echo
 echo "Network Manager Settings"
 echo
 echo "Delete the bridge connection and slave connections made previously to  make the correct ones"
+echo
 sudo nmcli connection delete bridge-br0
 sudo nmcli connection delete bridge-slave-usb0
 sudo nmcli connection delete bridge-slave-usb1
 #sudo nmcli connection delete br0
 echo
 echo "Make the bridge and slave connections"
+echo
 sudo nmcli con add type bridge ifname br0
 sudo nmcli con add type bridge-slave ifname usb0 master br0
 sudo nmcli con add type bridge-slave ifname usb1 master br0
@@ -127,6 +136,7 @@ echo
 sudo apt install -y dnsmasq
 echo
 echo "Clean file made before so the new is the correct"
+echo
 sudo rm /etc/dnsmasq.d/br0
 #sudo wget -c "https://raw.githubusercontent.com/PIBSAS/pizero2wEth/main/br0" -P "/etc/dnsmasq.d/"
 echo "dhcp-authoritative
