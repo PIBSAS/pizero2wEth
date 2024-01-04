@@ -16,7 +16,6 @@ echo
 sudo chmod +x /usr/local/sbin/usb-gadget.sh
 echo
 cd
-cd /lib/systemd/system/
 echo "[Unit]
 Description=My USB gadget
 After=network-online.target
@@ -29,7 +28,7 @@ RemainAfterExit=yes
 ExecStart=/usr/local/sbin/usb-gadget.sh
 
 [Install]
-WantedBy=sysinit.target" | sudo sed 's/^ *//;s/ *$//' > usbgadget.service
+WantedBy=sysinit.target" | sudo tee /lib/systemd/system/usbgadget.service > /dev/null
 echo
 #sudo wget -c "https://github.com/PIBSAS/pizero2wEth/blob/main/usbgadget.service" -P "/lib/systemd/system/"
 echo
