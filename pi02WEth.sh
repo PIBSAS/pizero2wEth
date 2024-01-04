@@ -1,10 +1,13 @@
 #!/bin/bash
 cd
-sudo sed -i '$a\dtoverlay=dwc2' /boot/config.txt
+cd /boot
+sudo sed -i '$a\dtoverlay=dwc2' config.txt
 echo
-sudo sed -i 's/$/ modules-load=dwc2/' /boot/cmdline.txt
+sudo sed -i 's/$/ modules-load=dwc2/' cmdline.txt
 echo
-sudo sed -i '$a\libcomposite' /etc/modules
+cd
+cd /etc
+sudo sed -i '$a\libcomposite' modules
 echo
 sudo wget -c "https://github.com/PIBSAS/pizero2wEth/blob/main/usb-gadget.sh" -P "/usr/local/sbin/"
 echo
