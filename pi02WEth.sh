@@ -11,11 +11,13 @@ sudo sed -i '$a\libcomposite' modules
 echo
 cd
 echo
+sudo rm /usr/local/sbin/usb-gadget.sh
 sudo wget -c "https://raw.githubusercontent.com/PIBSAS/pizero2wEth/main/usb-gadget.sh" -P "/usr/local/sbin/"
 echo
 sudo chmod +x /usr/local/sbin/usb-gadget.sh
 echo
 cd
+sudo rm /lib/systemd/system/usbgadget.service
 echo "[Unit]
 Description=My USB gadget
 After=network-online.target
@@ -48,5 +50,6 @@ echo "dnsMasq"
 echo
 sudo apt install -y dnsmasq
 echo
+sudo rm /etc/dnsmasq.d/br0
 sudo wget -c "https://raw.githubusercontent.com/PIBSAS/pizero2wEth/main/br0" -P "/etc/dnsmasq.d/"
 echo
