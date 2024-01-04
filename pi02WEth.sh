@@ -29,7 +29,7 @@ RemainAfterExit=yes
 ExecStart=/usr/local/sbin/usb-gadget.sh
 
 [Install]
-WantedBy=sysinit.target" | sed 's/^ *//;s/ *$//' > usbgadget.service
+WantedBy=sysinit.target" | sudo sed 's/^ *//;s/ *$//' > usbgadget.service
 echo
 #sudo wget -c "https://github.com/PIBSAS/pizero2wEth/blob/main/usbgadget.service" -P "/lib/systemd/system/"
 echo
