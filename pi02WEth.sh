@@ -113,7 +113,7 @@ echo "Delete the bridge connection and slave connections made previously to  mak
 sudo nmcli connection delete bridge-br0
 sudo nmcli connection delete bridge-slave-usb0
 sudo nmcli connection delete bridge-slave-usb1
-sudo nmcli connection delete br0
+#sudo nmcli connection delete br0
 echo
 echo "Make the bridge and slave connections"
 sudo nmcli con add type bridge ifname br0
