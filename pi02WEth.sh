@@ -15,7 +15,23 @@ sudo wget -c "https://github.com/PIBSAS/pizero2wEth/blob/main/usb-gadget.sh" -P 
 echo
 sudo chmod +x /usr/local/sbin/usb-gadget.sh
 echo
-sudo wget -c "https://github.com/PIBSAS/pizero2wEth/blob/main/usbgadget.service" -P "/lib/systemd/system/"
+cd
+cd /lib/systemd/system/
+echo "[Unit]
+Description=My USB gadget
+After=network-online.target
+Wants=network-online.target
+#After=systemd-modules-load.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/sbin/usb-gadget.sh
+
+[Install]
+WantedBy=sysinit.target" | sed 's/^ *//;s/ *$//' > usbgadget.service
+echo
+#sudo wget -c "https://github.com/PIBSAS/pizero2wEth/blob/main/usbgadget.service" -P "/lib/systemd/system/"
 echo
 sudo systemctl enable usbgadget.service
 echo
