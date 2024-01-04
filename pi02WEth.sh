@@ -11,7 +11,7 @@ sudo sed -i '$a\libcomposite' modules
 echo
 cd
 echo
-sudo wget -c "https://github.com/PIBSAS/pizero2wEth/blob/main/usb-gadget.sh" -P "/usr/local/sbin/"
+sudo wget -c "https://raw.githubusercontent.com/PIBSAS/pizero2wEth/main/usb-gadget.sh" -P "/usr/local/sbin/"
 echo
 sudo chmod +x /usr/local/sbin/usb-gadget.sh
 echo
@@ -48,5 +48,5 @@ echo "dnsMasq"
 echo
 sudo apt install -y dnsmasq
 echo
-sudo wget -c "https://github.com/PIBSAS/pizero2wEth/blob/main/br0" -P "/etc/dnsmasq.d/"
+sudo wget -c "https://raw.githubusercontent.com/PIBSAS/pizero2wEth/main/br0" -P "/etc/dnsmasq.d/"
 echo
