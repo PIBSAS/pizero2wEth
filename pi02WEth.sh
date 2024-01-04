@@ -9,6 +9,8 @@ cd
 cd /etc
 sudo sed -i '$a\libcomposite' modules
 echo
+cd
+echo
 sudo wget -c "https://github.com/PIBSAS/pizero2wEth/blob/main/usb-gadget.sh" -P "/usr/local/sbin/"
 echo
 sudo chmod +x /usr/local/sbin/usb-gadget.sh
