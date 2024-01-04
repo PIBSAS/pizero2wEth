@@ -11,4 +11,3 @@ ExecStart=/usr/local/sbin/usb-gadget.sh
 
 [Install]
 WantedBy=sysinit.target
-
