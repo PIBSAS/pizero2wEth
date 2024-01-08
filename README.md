@@ -1,6 +1,3 @@
-# 
-
-
 <h1 align="center"> Pi Zero 2W Ethernet Gadget</h1>
 <p align="center">
 RNDIS &amp; ECM for Raspberry Pi Zero 2W with case USB Gadget. Gracias a Ben's Place(https://www.hardill.me.uk/wordpress/)
@@ -14,15 +11,26 @@ RNDIS &amp; ECM for Raspberry Pi Zero 2W with case USB Gadget. Gracias a Ben's P
 <h2 align="center"> Pi Zero 2W Ethernet Gadget</h2>
 
 ## Manually:
+````
 echo "yes" | sudo rpi-update
+````
 reboot
+````
+````
 cd /boot/
 sudo sed -i '$a\dtoverlay=dwc2' config.txt
 sudo sed -i 's/$/ modules-load=dwc2/' cmdline.txt
+````
+````
 cd /etc/
 sudo sed -i '$a\libcomposite' modules
+````
+````
 sudo nano /usr/local/sbin/usb-gadget.sh
+````
+
 #With the next content:
+````
 #!/bin/bash
  
 cd /sys/kernel/config/usb_gadget/
@@ -82,15 +90,20 @@ nmcli connection up bridge-slave-usb0
 nmcli connection up bridge-slave-usb1
 sleep 5
 service dnsmasq restart
-
+````
 Save with Ctrl+s, close with Ctrl+x
 
 #Make executable:
+````
 sudo chmod +x /usr/local/sbin/usb-gadget.sh
+````
 #Create service:
+````
 sudo nano /lib/systemd/system/usbgadget.service
+````
 
 With this content:
+````
 [Unit]
 Description=My USB gadget
 After=network-online.target
@@ -104,25 +117,30 @@ ExecStart=/usr/local/sbin/usb-gadget.sh
   
 [Install]
 WantedBy=sysinit.target
-
+````
 Save with Ctrl+s, close with Ctrl+x
 
 #Enable Service:
+````
 sudo systemctl enable usbgadget.service
-
+````
 Config:
+````
 sudo nmcli con add type bridge ifname br0
 sudo nmcli con add type bridge-slave ifname usb0 master br0
 sudo nmcli con add type bridge-slave ifname usb1 master br0
 sudo nmcli connection modify bridge-br0 ipv4.method manual ipv4.addresses 10.55.0.1/24
-
+````
 #Install DNS Masq:
+````
 sudo apt-get install -y dnsmasq
-
+````
 #Create bridge:
+````
 sudo nano /etc/dnsmasq.d/br0
-
+````
 With the next content:
+````
 dhcp-authoritative
 dhcp-rapid-commit
 no-ping
@@ -130,11 +148,12 @@ interface=br0
 dhcp-range=10.55.0.2,10.55.0.6,255.255.255.248,1h
 dhcp-option=3
 leasefile-ro
+````
 
 Save with Ctrl+s, close with Ctrl+x
-
+````
 reboot
-
+````
 
 ## Easy Install -- Instalación fácil para Raspberry Pi DOES NOT WORK NEED MAKE MANUALLY:
 
