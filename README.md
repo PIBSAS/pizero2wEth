@@ -12,7 +12,7 @@ RNDIS &amp; ECM for Raspberry Pi Zero 2W with case USB Gadget. Gracias a Ben's P
 
 ## Manually:
 ````
-echo "yes" | sudo rpi-update
+sudo rpi-update
 ````
 
 ````
@@ -21,13 +21,13 @@ reboot
 
 ````
 cd /boot/
-sudo sed -i '$a\dtoverlay=dwc2' config.txt
-sudo sed -i 's/$/ modules-load=dwc2/' cmdline.txt
+add dtoverlay=dwc2 to the end of config.txt
+add modules-load=dwc2 to the end of cmdline.txt
 ````
 
 ````
 cd /etc/
-sudo sed -i '$a\libcomposite' modules
+add libcomposite to the end of modules
 ````
 
 ````
